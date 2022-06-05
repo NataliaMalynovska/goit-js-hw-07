@@ -20,21 +20,24 @@ function createGalleryImages(galleryItems) {
 }
 
 galleryContainer.addEventListener("click", onGalleryContainerClick)
-
+let modalShow 
 function onGalleryContainerClick(event) {
     event.preventDefault();
-    // const isGalleryImage = event.target.classList.contains("gallery__image");
-    // if (!isGalleryImage) {
-    //     return;
-    // }
-    const modalShow = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">
-`)
-
-instance.show()
-    console.log(event.target)
-    console.log(event.currentTarget)
-    console.log(event.target.dataset.source)
+    const isGalleryImage = event.target.classList.contains("gallery__image");
+    if (!isGalleryImage) {
+        return;
+    }
+    modalShow = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">`
+    )
+    
+    modalShow.show(window.addEventListener('keydown', onEscKeyPress))     
 }
 
-// console.log(galleryItems);
+function onEscKeyPress(event) {
+    console.log (event)
+    if (event.code === "Escape") (
+        modalShow.close(window.removeEventListener('keydown', onEscKeyPress))
+      )    
+}
+console.log(galleryItems);
