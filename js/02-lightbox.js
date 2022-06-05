@@ -29,8 +29,6 @@ function onGalleryContainerClick(event) {
         return;
     }
 
-
-
     console.log(event.target)
     console.log(event.currentTarget)
    

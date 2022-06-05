@@ -35,9 +35,11 @@ function onGalleryContainerClick(event) {
 }
 
 function onEscKeyPress(event) {
-    console.log (event)
+    modalShow.close(window.removeEventListener('keydown', onEscKeyPress))
+    console.log(event)
     if (event.code === "Escape") (
-        modalShow.close(window.removeEventListener('keydown', onEscKeyPress))
+        modalShow.close()
       )    
 }
+
 console.log(galleryItems);
