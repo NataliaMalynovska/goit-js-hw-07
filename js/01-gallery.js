@@ -14,7 +14,7 @@ function createGalleryImages(galleryItems) {
     <a class="gallery__link" href="${original}">
     <img class="gallery__image" src="${preview}" data-source= ${original} alt="${description}" />
     </a>
-    </div>               
+    </div>            
             `;
         }).join(``);
 }
@@ -27,19 +27,22 @@ function onGalleryContainerClick(event) {
     if (!isGalleryImage) {
         return;
     }
+    const options = {
+        onClose: (modalShow) => {
+            window.removeEventListener('keydown', onEscKeyPress)
+        }
+    }
     modalShow = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">`
+    <img src="${event.target.dataset.source}" width="800" height="600">`, options
     )
-    
-    modalShow.show(window.addEventListener('keydown', onEscKeyPress))     
+    modalShow.show(window.addEventListener('keydown', onEscKeyPress)  )
+       
 }
 
 function onEscKeyPress(event) {
-    modalShow.close(window.removeEventListener('keydown', onEscKeyPress))
     console.log(event)
     if (event.code === "Escape") (
         modalShow.close()
-      )    
+    )
 }
-
 console.log(galleryItems);
